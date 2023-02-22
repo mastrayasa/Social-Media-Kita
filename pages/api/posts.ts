@@ -2,18 +2,14 @@ import clientPromise from "@/lib/mongodb";
 
 export default async (req, res) => {
     try {
-        const client = await clientPromise;
-        const db = client.db("social_media_kita");
- 
-        const movies = await db
-            .collection("posts")
+        const client = await clientPromise;  
+        const posts = await client.db().collection("posts") 
             .find({})
-            .sort({ metacritic: -1 })
-            .limit(10)
-            .toArray();
- 
-        res.json(movies);
+            .sort({ createAt: -1 })
+            .limit(100)
+            .toArray(); 
+        res.json(posts);
     } catch (e) {
         console.error(e);
     }
- };
+ }; 
