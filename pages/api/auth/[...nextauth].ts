@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
     //   issuer: process.env.AUTH0_ISSUER,
     // }),
   ],
+  secret: process.env.SECRET,
   adapter: MongoDBAdapter(clientPromise),
   theme: {
     colorScheme: "light",
