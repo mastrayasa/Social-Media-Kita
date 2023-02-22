@@ -20,10 +20,8 @@ interface UseFormInputs{
     post: string
 }
 export default function PostCompose( {addOneSuccess} ) {
-
     const { register, handleSubmit,reset , watch, formState: { errors } } = useForm<UseFormInputs>();
     const [isLoading, setIsLoading] = useState(false)
-
     const onSubmit = async (data: UseFormInputs) => {
         setIsLoading(true)
         let response = null;
@@ -32,19 +30,12 @@ export default function PostCompose( {addOneSuccess} ) {
           .then((res) => {
             addOneSuccess(res.data)
             reset()
-             
           })
           .catch((err) => {
-             
           });
-          
           setIsLoading(false)
-
         return 0;
     };
-
-    
-
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
         <Box
