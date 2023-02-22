@@ -11,7 +11,7 @@ import {
 import Moment from 'react-moment';
 interface PostCardProps {
     post: {
-        create_at: string,
+        createAt: string,
         image: string,
         content: string
     }
@@ -36,7 +36,7 @@ export default function PostCard(props: PostCardProps) {
                 <Avatar src={'https://avatars0.githubusercontent.com/u/1164541?v=4'} />
                 <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                     <Text fontWeight={600}>Mastrayasa</Text>
-                    <Text color={'gray.500'}><Moment fromNow date={post.createAt} /></Text>
+                    <Text color={'gray.500'}><Moment fromNow date={post?.createAt} /></Text>
                 </Stack>
             </Stack>
 
@@ -49,7 +49,7 @@ export default function PostCard(props: PostCardProps) {
                     pos={'relative'}>
                     <Image
                         src={post.image}
-                        layout={'fill'}
+                        layout={'fill'} alt={'image'}
                     />
                 </Box>}
 

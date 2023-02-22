@@ -23,7 +23,7 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsloading] = useState(false);
     return (
-        <Flex direction="column" alig={'center'} mx={'auto'}    w={{base:"full", md:'md'}} h={"100vh"} >
+        <Flex direction="column"  mx={'auto'}    w={{base:"full", md:'md'}} h={"100vh"} >
             <Head>
                 <title>Signup</title> 
             </Head>
@@ -47,10 +47,9 @@ export default function LoginForm() {
                             <FormControl mb="2" w="full" >
                                 <InputGroup>
                                 
-                                    <InputLeftElement
-                                        pointerEvents='none'
-                                        children={<Icon as={FaUser} color='gray.300' />} 
-                                        />
+                                    <InputLeftElement pointerEvents='none'>
+                                    <Icon as={FaUser} color='gray.300' />
+                                    </InputLeftElement>
                                     <Input
                                         
                                         placeholder="Full Name"
@@ -67,10 +66,9 @@ export default function LoginForm() {
                             <FormControl mb="2" w="full" >
                                 <InputGroup>
                                 
-                                    <InputLeftElement
-                                        pointerEvents='none'
-                                        children={<Icon as={FaEnvelope} color='gray.300' />} 
-                                        />
+                                    <InputLeftElement pointerEvents='none'>
+                                    <Icon as={FaEnvelope} color='gray.300' />
+                                    </InputLeftElement>
                                     <Input
                                         
                                         placeholder="Alamat Email"
@@ -86,7 +84,7 @@ export default function LoginForm() {
                                 <InputGroup>
                                 <InputLeftElement
                                         pointerEvents='none'
-                                        children={<Icon as={FaKey} color='gray.300' />} />
+                                        ><Icon as={FaKey} color='gray.300' /></InputLeftElement>
                                     <Input
                                          
                                         placeholder="Password"
@@ -137,7 +135,7 @@ export default function LoginForm() {
                 </form> }
                 
                 {isLoading && 
-                <Flex w="full" h={200} hide  align="center" justify="center">
+                <Flex w="full" h={200}  align="center" justify="center">
                     <Spinner
                     thickness="4px"
                     speed="0.65s"

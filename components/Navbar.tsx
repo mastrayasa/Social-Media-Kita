@@ -39,7 +39,7 @@ export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
     const { data: session } = useSession()
 
-    console.log(session)
+   // console.log(session)
     return (
         <Box borderBottom={1}
             borderStyle={'solid'}
@@ -118,13 +118,11 @@ export default function WithSubnavigation() {
                             justify={'flex-end'}
                             direction={'row'}
                             spacing={6}>
-
-
                             <HStack>
                                 <Avatar
                                     boxSize="36px"
-                                    name={session.user?.name}
-                                    src={session.user?.image}
+                                    name={session.user?.name ? session.user?.name : 'Noname'}
+                                    src={session.user?.image ? session.user?.image : ''}
                                     borderRadius={"full"} />
 
                                 <Button

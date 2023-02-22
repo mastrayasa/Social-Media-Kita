@@ -47,9 +47,9 @@ export default function LoginForm() {
                                 <InputGroup>
                                 
                                     <InputLeftElement
-                                        pointerEvents='none'
-                                        children={<Icon as={FaEnvelope} color='gray.300' />} 
-                                        />
+                                        pointerEvents='none'>
+                                            <Icon as={FaEnvelope} color='gray.300' />
+                                    </InputLeftElement>
                                     <Input
                                         
                                         placeholder="Alamat Email"

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import axios from "axios";
+import axios, { Method } from "axios";
 import { useForm } from 'react-hook-form';
 import React, {  useState } from 'react'
 import {
@@ -16,12 +16,24 @@ import {
     HStack,
 } from '@chakra-ui/react';
 import { FaEllipsisV, FaGrin, FaMapMarkerAlt, FaPhotoVideo, FaRegCalendarAlt, FaRegChartBar, FaSearchLocation, FaThList } from 'react-icons/fa';
+import { Callback } from 'mongodb';
 interface UseFormInputs{
     post: string
 }
-export default function PostCompose( {addOneSuccess} ) {
+
+interface CallbackNewPost{
+    (src: object): void
+}
+
+interface PostComposeProps{
+    addOneSuccess: CallbackNewPost
+}
+
+export default function PostCompose( props: PostComposeProps ) {
     const { register, handleSubmit,reset , watch, formState: { errors } } = useForm<UseFormInputs>();
     const [isLoading, setIsLoading] = useState(false)
+    const { addOneSuccess } = props;
+
     const onSubmit = async (data: UseFormInputs) => {
         setIsLoading(true)
         let response = null;
