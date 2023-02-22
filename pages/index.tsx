@@ -23,9 +23,9 @@ interface HomeProps {
     posts: object
 }
 
-export default function Home(props: HomeProps) {
+export default function Home() {
     const { data: session,status } = useSession()
-    const [posts, setPosts] = useState(props.posts)
+    const [posts, setPosts] = useState([])
     const addOneSuccess = (res) =>{
         console.log(res)
         setPosts([res, ...posts]);
@@ -49,7 +49,7 @@ export default function Home(props: HomeProps) {
                 <Navbar />
                 <Container>
                     {session && 
-                    <Box mt={6}><PostCompose  addOneSuccess={() => { }} /></Box>
+                    <Box mt={6}><PostCompose  addOneSuccess={addOneSuccess} /></Box>
                     }
                     <Flex direction={'row'}
                         mt={6}
@@ -69,19 +69,19 @@ export default function Home(props: HomeProps) {
     )
 }
 
-export async function getStaticProps() {
-    try {
-        const client = await clientPromise;  
-        const posts = await client.db().collection("posts") 
-            .find({})
-            .sort({ createAt: -1 })
-            .limit(100)
-            .toArray();
+// export async function getStaticProps() {
+//     try {
+//         const client = await clientPromise;  
+//         const posts = await client.db().collection("posts") 
+//             .find({})
+//             .sort({ createAt: -1 })
+//             .limit(100)
+//             .toArray();
 
-        return {
-            props: { posts: JSON.parse(JSON.stringify(posts)) },
-        };
-    } catch (e) {
-        console.error(e);
-    }
-}
+//         return {
+//             props: { posts: JSON.parse(JSON.stringify(posts)) },
+//         };
+//     } catch (e) {
+//         console.error(e);
+//     }
+// }
