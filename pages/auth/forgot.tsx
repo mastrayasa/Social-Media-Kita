@@ -52,7 +52,7 @@ export default function LoginForm() {
                                     </InputLeftElement>
                                     <Input
                                         
-                                        placeholder="Email Adress"
+                                        placeholder="Email Address"
                                         variant={"outline"}
                                         colorScheme="brand.primary-blue"
                                         type="email"
