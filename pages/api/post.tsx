@@ -16,8 +16,10 @@ export default async (
             content: req.body.post,
             createAt: new Date(),
             userId: new ObjectId(session?.user.id),
-            comments: []
+            comments: [],
+            likes:[],
         }
+        
         await client.db().collection("posts").insertOne(newpost);
 
         res.json(newpost);
