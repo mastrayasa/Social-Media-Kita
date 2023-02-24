@@ -41,12 +41,12 @@ export default function WithSubnavigation() {
 
    // console.log(session)
     return (
-        <Box borderBottom={1}
+        <Box borderBottom={1} bg={useColorModeValue('blue.600', 'blue.900')}
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.900')}>
             <Box maxW={'4xl'} mx={'auto'}>
                 <Flex
-                    bg={useColorModeValue('white', 'gray.800')}
+                    //bg={useColorModeValue('white', 'gray.800')}
                     color={useColorModeValue('gray.600', 'white')}
                     minH={'60px'}
                     py={{ base: 2 }}
@@ -58,11 +58,14 @@ export default function WithSubnavigation() {
                         flex={{ base: 1, md: 'auto' }}
                         ml={{ base: -2 }}
                         display={{ base: 'flex', md: 'none' }}>
-                        <IconButton
+                        <IconButton color={'white'}
                             onClick={onToggle}
                             icon={
                                 isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
                             }
+                            _hover={{
+                                bg: 'blue.400'
+                            }}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
@@ -71,7 +74,7 @@ export default function WithSubnavigation() {
                         <Text  as={NextLink} href={'/'}
                             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                             fontFamily={'heading'}
-                            color={useColorModeValue('gray.800', 'white')}>
+                            color={useColorModeValue('white', 'white')}>
                             Social Media Kita
                         </Text>
 
@@ -88,24 +91,23 @@ export default function WithSubnavigation() {
                             spacing={6}>
                             <Button
                                 as={NextLink}
-                                // onClick={() => signIn()}
+                                color={'white'}
                                 fontSize={'sm'}
                                 fontWeight={400}
-                                variant={'link'}
+                                variant={'ghos'} _hover={{
+                                    bg: 'blue.300'
+                                }}
                                 href={'/auth/signin'}>
                                 Sign In
                             </Button>
-                            <Button
+                            <Button  
                                 as={NextLink}
                                 display={{ base: 'none', md: 'inline-flex' }}
                                 fontSize={'sm'}
-                                fontWeight={600}
-                                color={'white'}
-                                bg={'blue.400'}
+                                variant={'solid'} colorScheme={'gray'}
+                                fontWeight={600} 
                                 href={'/auth/signup'}
-                                _hover={{
-                                    bg: 'blue.300',
-                                }}>
+                                 >
                                 Sign Up
                             </Button>
                         </Stack>
@@ -118,14 +120,15 @@ export default function WithSubnavigation() {
                             justify={'flex-end'}
                             direction={'row'}
                             spacing={6}>
-                            <HStack>
+                            <HStack display={{base:'none',md:'flex'}}>
                                 <Avatar
                                     boxSize="36px"
                                     name={session.user?.name ? session.user?.name : 'Noname'}
                                     src={session.user?.image ? session.user?.image : ''}
                                     borderRadius={"full"} />
 
-                                <Button
+                                <Button 
+                                    color={'white'}
                                     as={'a'}
                                     fontSize={'sm'}
                                     fontWeight={400}
@@ -136,7 +139,8 @@ export default function WithSubnavigation() {
                             </HStack>
 
 
-                            <Button
+                            <Button 
+                                color={'white'}
                                 as={'a'} onClick={() => signOut()}
                                 fontSize={'sm'}
                                 fontWeight={400}
@@ -159,8 +163,8 @@ export default function WithSubnavigation() {
 }
 
 const DesktopNav = () => {
-    const linkColor = useColorModeValue('gray.600', 'gray.200');
-    const linkHoverColor = useColorModeValue('gray.800', 'white');
+    const linkColor = useColorModeValue('white', 'gray.200');
+    const linkHoverColor = useColorModeValue('white', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
@@ -176,8 +180,10 @@ const DesktopNav = () => {
                                 fontSize={'sm'}
                                 fontWeight={500}
                                 color={linkColor}
+                                rounded={'sm'}
                                 _hover={{
                                     textDecoration: 'none',
+                                    bg: 'blue.500',
                                     color: linkHoverColor,
                                 }}>
                                 {navItem.label}

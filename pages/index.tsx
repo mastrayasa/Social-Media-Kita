@@ -89,7 +89,7 @@ export default function Home() {
                         mb={6}
                         w={'full'}
                         mx={'auto'}> 
-                        <VStack spacing={4} w={'full'}>
+                        <VStack spacing={6} w={'full'}>
                             {posts &&
                                 posts.map((post, index) => (
                                     <PostCard key={index} post={post}></PostCard>

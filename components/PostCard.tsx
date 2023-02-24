@@ -2,19 +2,20 @@ import Image from 'next/image';
 import {
     Box,
     Center,
-    Heading,
+    Heading, Flex,
     Text,
-    Stack,
-    Avatar,
-    useColorModeValue,
+    Stack, HStack,
+    Avatar, Spacer, Button, ButtonGroup,
+    useColorModeValue, IconButton,
 } from '@chakra-ui/react';
 import Moment from 'react-moment';
+import { FaComment, FaMapMarkerAlt, FaShare, FaThumbsUp } from 'react-icons/fa';
 interface PostCardProps {
     post: {
         createAt: string,
         image: string,
         content: string,
-        user:{
+        user: {
             name: string,
             image: string
         }
@@ -29,7 +30,7 @@ export default function PostCard(props: PostCardProps) {
             bg={useColorModeValue('white', 'gray.900')}
             boxShadow={'md'}
             rounded={'md'}
-            p={6}
+            px={6} pt={4} pb={3}
             overflow={'hidden'}>
             <Stack
                 direction={'row'}
@@ -61,6 +62,29 @@ export default function PostCard(props: PostCardProps) {
             <Stack>
                 <Text color={'gray.500'}>{post.content}</Text>
             </Stack>
+
+
+            <HStack mt={4} color={'gray.400'} fontSize={'sm'}>
+                <Flex align={'center'} gap='1' >
+                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaThumbsUp />} colorScheme='gray' variant='ghost'>
+                        Like
+                    </Button>
+                </Flex>
+                <Spacer />
+                <Flex align={'center'} gap='1'>
+                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaComment />} colorScheme='gray' variant='ghost'>
+                        Comment
+                    </Button>
+                </Flex>
+                <Spacer />
+                <Flex align={'center'} gap='1'>
+                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaShare />} colorScheme='gray' variant='ghost'>
+                        Share
+                    </Button>
+                </Flex>
+
+            </HStack>
+
         </Box>
     );
 }
