@@ -9,9 +9,11 @@ import {
     Icon, Input,
     SimpleGrid,
     useColorModeValue,
-    Stack
+    Stack, VStack, HStack,
+    Button
 
 } from '@chakra-ui/react';
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import clientPromise from "@/lib/mongodb";
 import Navbar from '@/components/Navbar'
 import PostCompose from '@/components/PostCompose'
@@ -19,6 +21,7 @@ import PostCard from '@/components/PostCard'
 import React, { useState, useEffect } from 'react'
 import { useSession, signIn, signOut } from "next-auth/react"
 import axios, { Method } from "axios";
+import PostLoading from '@/components/PostLoading';
 interface HomeProps {
     posts: object
 }
@@ -28,12 +31,12 @@ export default function Home() {
     const [posts, setPosts] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => { 
+    useEffect(() => {
         loadPost()
-    },[]);
+    }, []);
 
     const addOneSuccess = (res) => {
-        console.log(res)
+        // console.log(res)
         setPosts([res, ...posts]);
     }
 
@@ -71,18 +74,28 @@ export default function Home() {
                     {session &&
                         <Box mt={6}><PostCompose addOneSuccess={addOneSuccess} /></Box>
                     }
+
+                    {/* <Button onClick={() => { loadPost() }}>Reload</Button> */}
+
+                    {isLoading  &&  <>
+                        <PostLoading />
+                        <PostLoading />
+                        <PostLoading />
+                        <PostLoading />
+                    </>}
+                    
                     <Flex direction={'row'}
                         mt={6}
                         mb={6}
-                        mx={'auto'}>
-                        {isLoading && <Text>Memuat...</Text>}
-                        <Stack spacing={4} align={'center'} w={'full'}>
+                        w={'full'}
+                        mx={'auto'}> 
+                        <VStack spacing={4} w={'full'}>
                             {posts &&
                                 posts.map((post, index) => (
                                     <PostCard key={index} post={post}></PostCard>
                                 ))
                             }
-                        </Stack>
+                        </VStack>
                     </Flex>
                 </Container>
             </main>

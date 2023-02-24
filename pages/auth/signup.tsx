@@ -25,7 +25,7 @@ export default function LoginForm() {
     return (
         <Flex direction="column"  mx={'auto'}    w={{base:"full", md:'md'}} h={"100vh"} >
             <Head>
-                <title>Signup</title> 
+                <title>Sign Up</title> 
             </Head>
             <Flex   px={5} direction="column" justify={'center'}>
                 <Text
@@ -36,7 +36,7 @@ export default function LoginForm() {
                     fontSize="2xl"
                     fontWeight="bold"
                 >
-                    Signup
+                    Sign Up
                 </Text>
 
                 {!isLoading && 
@@ -71,7 +71,7 @@ export default function LoginForm() {
                                     </InputLeftElement>
                                     <Input
                                         
-                                        placeholder="Alamat Email"
+                                        placeholder="Email Adress"
                                         variant={"outline"}
                                         colorScheme="blue"
                                         type="email"
@@ -87,7 +87,7 @@ export default function LoginForm() {
                                         ><Icon as={FaKey} color='gray.300' /></InputLeftElement>
                                     <Input
                                          
-                                        placeholder="Password"
+                                        placeholder="Strong Password"
                                         variant={"outline"}
                                         colorScheme="blue"
                                         type={showPassword ? 'text' : 'password'} />
@@ -111,7 +111,7 @@ export default function LoginForm() {
                                 w="full"
                                 colorScheme={'blue'}
                             >
-                                Daftar
+                                Sign Up
                             </Button>
                         </Box>
 
@@ -120,14 +120,14 @@ export default function LoginForm() {
 
 
 
-                        <Flex pt={2} w={'full'}>
-                            <Center>
+                        
+                            <Center pt={12}  >
                                 <Link href='/auth/signin' as={NextLink} color={'gray'}>
-                                    Sudah punya akun?
+                                    Sign In
                                 </Link>
                             </Center>
                              
-                        </Flex>
+                     
 
 
 

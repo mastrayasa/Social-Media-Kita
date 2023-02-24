@@ -65,10 +65,10 @@ export const authOptions: NextAuthOptions = {
       token.userRole = "admin"
       return token
     },
-    // async session({ session, token }) {
-    //     session.userId = token.sub;
-    //     return Promise.resolve(session);
-    // },
+    async session({ session, user }) {
+        session.user.id = user.id;
+        return Promise.resolve(session);
+    },
    
   },
 }

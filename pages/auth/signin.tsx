@@ -25,9 +25,9 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsloading] = useState(false);
     return (
-        <Flex direction="column" alig={'center'} mx={'auto'} w={{ base: "full", md: 'md' }} h={"100vh"} >
+        <Flex direction="column" mx={'auto'} w={{ base: "full", md: 'md' }} h={"100vh"} >
             <Head>
-                <title>Login</title>
+                <title>Sign In</title>
             </Head>
             <Flex px={5} direction="column" justify={'center'}>
                 <Text
@@ -38,7 +38,7 @@ export default function LoginForm() {
                     fontSize="2xl"
                     fontWeight="bold"
                 >
-                    Login Sekarang
+                    Sign In
                 </Text>
 
                 {!isLoading &&
@@ -55,13 +55,13 @@ export default function LoginForm() {
                                     variant={'outline'}
                                     leftIcon={<FcGoogle />}>
                                     <Center>
-                                        <Text>Lanjutkan dengan Google</Text>
+                                        <Text>Continue with Google</Text>
                                     </Center>
                                 </Button> 
                             </VStack>
 
                             <Box py={5}>
-                                <Text color={'gray'}>atau</Text>
+                                <Text color={'gray'}>or</Text>
                             </Box>
 
                             <Box w="full"   >
@@ -74,7 +74,7 @@ export default function LoginForm() {
                                                 </InputLeftElement>
                                         <Input
 
-                                            placeholder="Alamat Email"
+                                            placeholder="Email Adress"
                                             variant={"outline"}
                                             colorScheme="blue"
                                             type="email"
@@ -90,7 +90,7 @@ export default function LoginForm() {
                                             ><Icon as={FaKey} color='gray.300' /></InputLeftElement>
                                         <Input
 
-                                            placeholder="Password"
+                                            placeholder="Strong Password"
                                             variant={"outline"}
                                             colorScheme="blue"
                                             type={showPassword ? 'text' : 'password'} />
@@ -113,7 +113,7 @@ export default function LoginForm() {
                                     type="button"
                                     w="full"
                                     colorScheme={'blue'} >
-                                    Masuk
+                                    Sign in
                                 </Button>
                             </Box>
 
@@ -127,13 +127,13 @@ export default function LoginForm() {
                             <Flex pt={10} w={'full'}>
                                 <Box>
                                     <Link href='/auth/signup' as={NextLink} color={'gray'}>
-                                        Belum punya akun?
+                                        Sign up
                                     </Link>
                                 </Box>
                                 <Spacer />
                                 <Box>
                                     <Link href='/auth/forgot' as={NextLink} color={'gray'}>
-                                        Lupa Password?
+                                        Forgot Password
                                     </Link>
                                 </Box>
                             </Flex>
@@ -157,7 +157,7 @@ export default function LoginForm() {
             
             <Center pt={16}>
                 <Link href='/' as={NextLink} color={'gray'}>
-                    Beranda
+                   Back to home
                 </Link>
             </Center>
 

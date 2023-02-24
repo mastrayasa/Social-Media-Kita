@@ -13,7 +13,11 @@ interface PostCardProps {
     post: {
         createAt: string,
         image: string,
-        content: string
+        content: string,
+        user:{
+            name: string,
+            image: string
+        }
     }
 }
 
@@ -33,9 +37,9 @@ export default function PostCard(props: PostCardProps) {
                 align={'center'}
                 mb={4}
             >
-                <Avatar src={'https://avatars0.githubusercontent.com/u/1164541?v=4'} />
+                <Avatar src={post?.user?.image} />
                 <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                    <Text fontWeight={600}>Mastrayasa</Text>
+                    <Text fontWeight={600}>{post?.user?.name}</Text>
                     <Text color={'gray.500'}><Moment fromNow date={post?.createAt} /></Text>
                 </Stack>
             </Stack>

@@ -2,6 +2,7 @@ import clientPromise from "@/lib/mongodb";
 import { getServerSession } from "next-auth"
 import { authOptions } from "./auth/[...nextauth]"
 import type { NextApiRequest, NextApiResponse } from "next"
+import { ObjectId } from "mongodb";
 
 export default async (
     req: NextApiRequest,
@@ -11,13 +12,15 @@ export default async (
     try {
         const client = await clientPromise;
         
-        const data = {
+        const newpost = {
             content: req.body.post,
             createAt: new Date(),
-            userId: "fsdfsdf"
+            userId: new ObjectId(session?.user.id),
+            comments: []
         }
-        await client.db().collection("posts").insertOne(data);
-        res.json(data);
+        await client.db().collection("posts").insertOne(newpost);
+
+        res.json(newpost);
     } catch (e) {
         console.error(e);
     }

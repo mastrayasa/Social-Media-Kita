@@ -23,7 +23,7 @@ export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsloading] = useState(false);
     return (
-        <Flex direction="column" alig={'center'} mx={'auto'}    w={{base:"full", md:'md'}} h={"100vh"} >
+        <Flex direction="column"   mx={'auto'}    w={{base:"full", md:'md'}} h={"100vh"} >
             <Head>
                 <title>Forgot Password</title> 
             </Head>
@@ -52,7 +52,7 @@ export default function LoginForm() {
                                     </InputLeftElement>
                                     <Input
                                         
-                                        placeholder="Alamat Email"
+                                        placeholder="Email Adress"
                                         variant={"outline"}
                                         colorScheme="brand.primary-blue"
                                         type="email"
@@ -68,7 +68,7 @@ export default function LoginForm() {
                                 w="full"
                                 colorScheme={'blue'}
                             >
-                                Kirim
+                                Sent
                             </Button>
                         </Box>
 
@@ -77,14 +77,14 @@ export default function LoginForm() {
 
 
 
-                        <Flex pt={2} w={'full'}>
-                            <Box>
+                         
+                            <Center pt={12}>
                                 <Link href='/auth/signin' as={NextLink} color={'gray'}>
-                                    Tidak ada masalah
+                                    Sign In
                                 </Link>
-                            </Box>
+                            </Center>
                             
-                        </Flex>
+                        
 
 
 
