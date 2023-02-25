@@ -22,7 +22,40 @@ export default async (
         
         await client.db().collection("posts").insertOne(newpost);
 
-        res.json(newpost);
+        const post = await client.db().collection("posts")
+            // .find({})
+            .aggregate([
+                { 
+                    '$match': { _id : new ObjectId(newpost._id) } 
+                },
+                {
+                    "$lookup": {
+                        "from": "users",
+                        "localField": "userId",
+                        "foreignField": "_id",
+                        "as": "user"
+                    }
+                },
+                {
+                    "$unwind": "$user"
+                },
+                {
+                    "$project": {
+                      "_id": 1,
+                      "content": 1,
+                      "createAt": 1,
+                      "comments": 1,
+                      "user.name": 1,
+                      "user.image": 1, 
+                    }
+                  }
+            ])
+
+            .sort({ createAt: -1 })
+            .limit(1)
+            .toArray();
+
+        res.json(post[0]);
     } catch (e) {
         console.error(e);
     }
