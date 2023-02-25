@@ -30,11 +30,12 @@ yarn dev
 
 Open <http://localhost:3000> to see your project
 
-
 ### Tech Stack
-- [React.js](https://reactjs.org)
 - [Next.js](https://nextjs.org)
-- Integrate with [Chakra UI](https://chakra-ui.com)
-- Thanks to [Chakra Templates](https://chakra-templates.dev)
+- [MongoDB](https://www.mongodb.com)
+
+### Free Resource
+- [Chakra UI](https://chakra-ui.com)
 - [React Icons](https://react-icons.github.io/react-icons)
- 
+- [Vercel](https://vercel.com/mastrayasa)
+- [MongoDB Atlas Database](https://www.mongodb.com/atlas/database)
