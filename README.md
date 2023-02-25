@@ -1,10 +1,9 @@
 
 # Social Media Kita
-## <a href="#">LIVE DEMO</a>
+## [Live Demo](https://social-media-kita.vercel.app/)
 
 ### Description
 This is a tiny social media like facebook :lol any user can create post and comment it.
-
 this project is case study to learn nextjs and mongodb in real project
 
 ### Make it your own
