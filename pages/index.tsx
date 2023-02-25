@@ -10,8 +10,8 @@ import {
     SimpleGrid,
     useColorModeValue,
     Stack, VStack, HStack,
-    Button
-
+    Button,
+    Spinner
 } from '@chakra-ui/react';
 import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import clientPromise from "@/lib/mongodb";
@@ -54,9 +54,27 @@ export default function Home() {
         return 0;
     };
 
+    
+  
+    
+ 
+    
+    
+    
+
 
     if (status === 'loading') {
-        return ('Loading...')
+        return (
+            <Flex w="full" h='calc(100vh)' direction={'column'}  align="center" justify="center">
+              <Spinner
+                thickness="2px"
+                speed="1s"  
+                emptyColor="blue.200"
+                color="blue.700"
+                size="xl"/>
+                <Text color={'blue.600'} mt="3">Please wait...</Text>
+            </Flex>
+        );
     }
 
     else if (status === 'unauthenticated') {
@@ -70,7 +88,7 @@ export default function Home() {
             </Head>
             <main>
                 <Navbar />
-                <Container>
+                <Container >
                     {session &&
                         <Box mt={6}><PostCompose addOneSuccess={addOneSuccess} /></Box>
                     }

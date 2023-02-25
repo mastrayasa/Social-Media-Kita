@@ -51,7 +51,7 @@ export default function LoginForm() {
                                     <Icon as={FaUser} color='gray.300' />
                                     </InputLeftElement>
                                     <Input
-                                        
+                                        bg={'white'}
                                         placeholder="Full Name"
                                         variant={"outline"}
                                         colorScheme="brand.primary-blue"
@@ -70,7 +70,7 @@ export default function LoginForm() {
                                     <Icon as={FaEnvelope} color='gray.300' />
                                     </InputLeftElement>
                                     <Input
-                                        
+                                        bg={'white'}
                                         placeholder="Email Address"
                                         variant={"outline"}
                                         colorScheme="blue"
@@ -86,7 +86,7 @@ export default function LoginForm() {
                                         pointerEvents='none'
                                         ><Icon as={FaKey} color='gray.300' /></InputLeftElement>
                                     <Input
-                                         
+                                        bg={'white'}
                                         placeholder="Strong Password"
                                         variant={"outline"}
                                         colorScheme="blue"

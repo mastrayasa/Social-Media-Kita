@@ -51,7 +51,7 @@ export default function LoginForm() {
                                             <Icon as={FaEnvelope} color='gray.300' />
                                     </InputLeftElement>
                                     <Input
-                                        
+                                        bg={'white'}
                                         placeholder="Email Address"
                                         variant={"outline"}
                                         colorScheme="brand.primary-blue"

@@ -10,11 +10,17 @@ import {
 } from '@chakra-ui/react';
 import Moment from 'react-moment';
 import { FaComment, FaMapMarkerAlt, FaShare, FaThumbsUp } from 'react-icons/fa';
+import usePost from '@/lib/usePost'
+import { useEffect, useState } from 'react';
+import PostComment from '@/components/PostComment'
 interface PostCardProps {
     post: {
+        _id: string,
         createAt: string,
         image: string,
         content: string,
+        likes: object,
+        comments: object
         user: {
             name: string,
             image: string
@@ -24,6 +30,11 @@ interface PostCardProps {
 
 export default function PostCard(props: PostCardProps) {
     const { post } = props;
+    const [isLike, setIsLike] = useState(false) 
+    const toggleLike = () =>{
+        setIsLike(!isLike)
+    }
+
     return (
         <Box
             w={'full'}
@@ -64,9 +75,17 @@ export default function PostCard(props: PostCardProps) {
             </Stack>
 
 
-            <HStack mt={4} color={'gray.400'} fontSize={'sm'}>
+            <HStack 
+            mt={4} py={1} 
+            color={'gray.400'} 
+            fontSize={'sm'}  
+            borderTop={'1px'}>
                 <Flex align={'center'} gap='1' >
-                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaThumbsUp />} colorScheme='gray' variant='ghost'>
+                    <Button 
+                    onClick={() => { toggleLike() }} 
+                    size='sm' leftIcon={<FaThumbsUp />} 
+                    colorScheme={isLike==true ? 'blue'  : 'gray' }
+                    variant='ghost'>
                         Like
                     </Button>
                 </Flex>
@@ -84,6 +103,8 @@ export default function PostCard(props: PostCardProps) {
                 </Flex>
 
             </HStack>
+
+            <PostComment post={post} />
 
         </Box>
     );
