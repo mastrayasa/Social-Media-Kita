@@ -91,7 +91,7 @@ export default function PostCard(props: PostCardProps) {
                 </Flex>
                 <Spacer />
                 <Flex align={'center'} gap='1'>
-                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaComment />} colorScheme='gray' variant='ghost'>
+                    <Button size='sm' leftIcon={<FaComment />} colorScheme='gray' variant='ghost'>
                         Comment
                     </Button>
                 </Flex>
