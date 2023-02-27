@@ -5,9 +5,9 @@ import {
     IconButton,
     Button,
     Stack,
-    Collapse, 
+    Collapse,
     HStack,
-    Icon, 
+    Icon,
     Link,
     Popover, Container,
     PopoverTrigger,
@@ -15,7 +15,7 @@ import {
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
-    MenuDivider,
+    useColorMode,
     Avatar,
 } from '@chakra-ui/react';
 import {
@@ -25,26 +25,23 @@ import {
     ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { useSession, signOut } from "next-auth/react"
-import NextLink from 'next/link' 
+import NextLink from 'next/link'
+import { FaMoon, FaRegSun } from 'react-icons/fa';
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
     const { data: session } = useSession()
-
-   // console.log(session)
+    const { colorMode, toggleColorMode } = useColorMode()
+    const color = useColorModeValue('white', 'gray.300')
     return (
         <Box borderBottom={1} bg={useColorModeValue('blue.600', 'blue.900')}
             borderStyle={'solid'}
             borderColor={useColorModeValue('gray.200', 'gray.900')}>
             <Box maxW={'4xl'} mx={'auto'}>
                 <Flex
-                    //bg={useColorModeValue('white', 'gray.800')}
-                    color={useColorModeValue('gray.600', 'white')}
                     minH={'60px'}
                     py={{ base: 2 }}
                     px={{ base: 4 }}
-
                     align={'center'}>
-
                     <Flex
                         flex={{ base: 1, md: 'auto' }}
                         ml={{ base: -2 }}
@@ -55,17 +52,18 @@ export default function WithSubnavigation() {
                                 isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
                             }
                             _hover={{
-                                bg: 'blue.400'
+                                bg: useColorModeValue('blue.700', 'gray.600')
                             }}
+
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
                     </Flex>
                     <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-                        <Text  as={NextLink} href={'/'}
+                        <Text as={NextLink} href={'/'}
                             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                             fontFamily={'heading'}
-                            color={useColorModeValue('white', 'white')}>
+                            color={color}>
                             Social Media Kita
                         </Text>
 
@@ -79,28 +77,34 @@ export default function WithSubnavigation() {
                             flex={{ base: 1, md: 0 }}
                             justify={'flex-end'}
                             direction={'row'}
-                            spacing={6}>
+                            spacing={2}>
                             <Button
                                 as={NextLink}
-                                color={'white'}
                                 fontSize={'sm'}
                                 fontWeight={400}
-                                variant={'ghos'} _hover={{
-                                    bg: 'blue.300'
+                                color={color}
+                                _hover={{
+                                    color: 'white'
                                 }}
+                               //  colorScheme={'gray'}
+                                variant={'ghost'}
                                 href={'/auth/signin'}>
                                 Sign In
                             </Button>
-                            <Button  
+                            <Button
                                 as={NextLink}
                                 display={{ base: 'none', md: 'inline-flex' }}
                                 fontSize={'sm'}
-                                variant={'solid'} colorScheme={'gray'}
-                                fontWeight={600} 
+                                variant={'solid'}
+                                colorScheme={'gray'}
+                                fontWeight={400}
                                 href={'/auth/signup'}
-                                 >
+                            >
                                 Sign Up
                             </Button>
+
+                            <IconButton aria-label='Toggle color mode' icon={colorMode === 'light' ? <FaMoon /> : <FaRegSun />} onClick={toggleColorMode} />
+
                         </Stack>
                     }
 
@@ -110,15 +114,15 @@ export default function WithSubnavigation() {
                             flex={{ base: 1, md: 0 }}
                             justify={'flex-end'}
                             direction={'row'}
-                            spacing={6}>
-                            <HStack display={{base:'none',md:'flex'}}>
+                            spacing={2}>
+                            <HStack display={{ base: 'none', md: 'flex' }}>
                                 <Avatar
                                     boxSize="36px"
                                     name={session.user?.name ? session.user?.name : 'Noname'}
                                     src={session.user?.image ? session.user?.image : ''}
                                     borderRadius={"full"} />
 
-                                <Button 
+                                <Button
                                     color={'white'}
                                     as={'a'}
                                     fontSize={'sm'}
@@ -130,7 +134,7 @@ export default function WithSubnavigation() {
                             </HStack>
 
 
-                            <Button 
+                            <Button
                                 color={'white'}
                                 as={'a'} onClick={() => signOut()}
                                 fontSize={'sm'}
@@ -139,6 +143,8 @@ export default function WithSubnavigation() {
                                 href={'#'}>
                                 Keluar
                             </Button>
+
+                            <IconButton aria-label='Toggle color mode' icon={colorMode === 'light' ? <FaMoon /> : <FaRegSun />} onClick={toggleColorMode} />
 
                         </Stack>
                     }
@@ -156,6 +162,7 @@ export default function WithSubnavigation() {
 const DesktopNav = () => {
     const linkColor = useColorModeValue('white', 'gray.200');
     const linkHoverColor = useColorModeValue('white', 'white');
+    const linkHoverBg = useColorModeValue('blue.500','blue.800');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
 
     return (
@@ -171,10 +178,10 @@ const DesktopNav = () => {
                                 fontSize={'sm'}
                                 fontWeight={500}
                                 color={linkColor}
-                                rounded={'sm'}
+                                rounded={'md'}
                                 _hover={{
                                     textDecoration: 'none',
-                                    bg: 'blue.500',
+                                    bg: linkHoverBg,
                                     color: linkHoverColor,
                                 }}>
                                 {navItem.label}

@@ -62,7 +62,7 @@ export default function PostCardComponent(props: PostCard) {
                 fontSize={'sm'}
                 borderTop={'1px'}>
                 <Flex align={'center'} gap='1' >
-                    <Button
+                    <Button  
                         onClick={() => { toggleLike() }}
                         size='sm' leftIcon={<FaThumbsUp />}
                         colorScheme={isLike == true ? 'blue' : 'gray'}

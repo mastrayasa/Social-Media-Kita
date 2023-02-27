@@ -15,15 +15,16 @@ import {
     Link,
     InputGroup,
     FormControl,
-    InputRightElement, Spinner, Stack, InputLeftAddon, InputRightAddon
+    InputRightElement, Spinner, Stack, InputLeftAddon, InputRightAddon, useColorModeValue
 } from "@chakra-ui/react";
 import NextLink from 'next/link'
 import { FaRegEyeSlash, FaRegEye, FaEnvelope, FaKey } from "react-icons/fa";
 import Head from 'next/head'
 import { useSession, signIn, signOut } from "next-auth/react"
 export default function LoginForm() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsloading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
+    const [isLoading, setIsloading] = useState(false)
+    const inputBg = useColorModeValue('gray.100', 'gray.700')
     return (
         <Flex direction="column" mx={'auto'} w={{ base: "full", md: 'md' }} h={"100vh"} >
             <Head>
@@ -50,7 +51,7 @@ export default function LoginForm() {
                                     onClick={() => {
                                         signIn('google' ,{ callbackUrl: '/' });
                                     }}
-                                    bg={'white'}
+                                    bg={inputBg}
                                     w={'full'} 
                                     fontWeight={'normal'}
                                     variant={'outline'}
@@ -74,7 +75,7 @@ export default function LoginForm() {
                                                 <Icon as={FaEnvelope} color='gray.300' />
                                                 </InputLeftElement>
                                         <Input
-                                            bg={'white'}
+                                            bg={inputBg}
                                             placeholder="Email Address"
                                             variant={"outline"}
                                             colorScheme="blue"
@@ -90,7 +91,7 @@ export default function LoginForm() {
                                             pointerEvents='none'
                                             ><Icon as={FaKey} color='gray.300' /></InputLeftElement>
                                         <Input
-                                            bg={'white'}
+                                            bg={inputBg}
                                             placeholder="Strong Password"
                                             variant={"outline"}
                                             colorScheme="blue"

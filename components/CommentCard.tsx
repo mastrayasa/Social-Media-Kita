@@ -7,12 +7,15 @@ import {
     Avatar,  
     Spacer,
     HStack,
+    useColorModeValue,
 } from '@chakra-ui/react'; 
 interface CommentCardProps {
     comment: CommentType
 }
 export default function CommentCard (props: CommentCardProps){
     const {comment} = props
+    const commentBg = useColorModeValue('gray.100', 'gray.700')
+    const color = useColorModeValue('gray.900', 'gray.100')
     return (<Box >
         <Stack
             direction={'row'}
@@ -25,33 +28,27 @@ export default function CommentCard (props: CommentCardProps){
                 direction={'column'} spacing={0} fontSize={'sm'}>
 
                 <Box
-                    bg={'gray.100'}
+                    bg={commentBg}
                     px={2}
                     py={2}
                     rounded={'xl'} >
                     <HStack>
-                        <Text fontWeight={600}>Mastrayasa{comment?.user?.name}</Text>
+                        <Text color={color} fontWeight={600}>Mastrayasa{comment?.user?.name}</Text>
                         <Spacer />
                         <Text fontSize='xs' color={'gray.500'}><Moment fromNow date={comment?.createAt} /></Text>
-                    </HStack>
-
-                    <Text>{comment.comment}</Text>
+                    </HStack> 
+                    <Text color={color}>{comment.comment}</Text>
                 </Box>
-                <HStack>
+                <HStack color={color}>
                     <Text _hover={{
                         textDecoration: 'underline',
                         cursor: 'pointer',
-                    }}>Suka</Text>
+                    }}>Like</Text>
 
                     <Text _hover={{
                         textDecoration: 'underline',
                         cursor: 'pointer',
-                    }}>Balas</Text>
-
-                    <Text _hover={{
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                    }}>Bagikan</Text>
+                    }}>Reply</Text> 
                 </HStack>
             </Stack>
         </Stack>
