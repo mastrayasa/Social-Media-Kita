@@ -5,14 +5,9 @@ import {
     IconButton,
     Button,
     Stack,
-    Collapse,
-    Image,
+    Collapse, 
     HStack,
-    Icon,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
+    Icon, 
     Link,
     Popover, Container,
     PopoverTrigger,
@@ -29,12 +24,8 @@ import {
     ChevronDownIcon,
     ChevronRightIcon,
 } from '@chakra-ui/icons';
-
-import { useSession, signIn, signOut } from "next-auth/react"
-import NextLink from 'next/link'
-import { FaArrowAltCircleDown } from 'react-icons/fa';
-
-
+import { useSession, signOut } from "next-auth/react"
+import NextLink from 'next/link' 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
     const { data: session } = useSession()

@@ -1,19 +1,9 @@
 import {
-    Avatar,
     Box,
-    chakra,
-    color, Text,
-    Container,
-    Flex,
-    Icon, Input,
-    SimpleGrid,
-    useColorModeValue,
-    Stack, VStack, HStack,
-    Button
-
-} from '@chakra-ui/react';
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
-
+    Stack, 
+    SkeletonCircle, 
+    SkeletonText
+} from '@chakra-ui/react'; 
 export default function PostLoading(){
     return (<Stack
         direction={'row'}

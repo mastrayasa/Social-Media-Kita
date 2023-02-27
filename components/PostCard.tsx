@@ -1,37 +1,22 @@
 import Image from 'next/image';
 import {
     Box,
-    Center,
-    Heading, Flex,
+    Flex,
     Text,
     Stack, HStack,
-    Avatar, Spacer, Button, ButtonGroup,
-    useColorModeValue, IconButton,
+    Avatar, Spacer, Button,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import Moment from 'react-moment';
-import { FaComment, FaMapMarkerAlt, FaShare, FaThumbsUp } from 'react-icons/fa';
-import usePost from '@/lib/usePost'
-import { useEffect, useState } from 'react';
+import { FaComment, FaShare, FaThumbsUp } from 'react-icons/fa';
+import { useState } from 'react';
 import PostComment from '@/components/PostComment'
-interface PostCardProps {
-    post: {
-        _id: string,
-        createAt: string,
-        image: string,
-        content: string,
-        likes: object,
-        comments: object
-        user: {
-            name: string,
-            image: string
-        }
-    }
-}
+import { PostCard } from '@/lib/interfaces/PostCard';
 
-export default function PostCard(props: PostCardProps) {
+export default function PostCardComponent(props: PostCard) {
     const { post } = props;
-    const [isLike, setIsLike] = useState(false) 
-    const toggleLike = () =>{
+    const [isLike, setIsLike] = useState(false)
+    const toggleLike = () => {
         setIsLike(!isLike)
     }
 
@@ -63,10 +48,7 @@ export default function PostCard(props: PostCardProps) {
                     mx={-6}
                     mb={6}
                     pos={'relative'}>
-                    <Image
-                        src={post.image}
-                        layout={'fill'} alt={'image'}
-                    />
+                    <Image src={post.image}  alt={'image'} />
                 </Box>}
 
 
@@ -74,18 +56,17 @@ export default function PostCard(props: PostCardProps) {
                 <Text color={'gray.500'}>{post.content}</Text>
             </Stack>
 
-
-            <HStack 
-            mt={4} py={1} 
-            color={'gray.400'} 
-            fontSize={'sm'}  
-            borderTop={'1px'}>
+            <HStack
+                mt={4} py={1}
+                color={'gray.400'}
+                fontSize={'sm'}
+                borderTop={'1px'}>
                 <Flex align={'center'} gap='1' >
-                    <Button 
-                    onClick={() => { toggleLike() }} 
-                    size='sm' leftIcon={<FaThumbsUp />} 
-                    colorScheme={isLike==true ? 'blue'  : 'gray' }
-                    variant='ghost'>
+                    <Button
+                        onClick={() => { toggleLike() }}
+                        size='sm' leftIcon={<FaThumbsUp />}
+                        colorScheme={isLike == true ? 'blue' : 'gray'}
+                        variant='ghost'>
                         Like
                     </Button>
                 </Flex>
@@ -97,7 +78,7 @@ export default function PostCard(props: PostCardProps) {
                 </Flex>
                 <Spacer />
                 <Flex align={'center'} gap='1'>
-                    <Button onClick={() => { alert("soon")}} size='sm' leftIcon={<FaShare />} colorScheme='gray' variant='ghost'>
+                    <Button onClick={() => { alert("soon") }} size='sm' leftIcon={<FaShare />} colorScheme='gray' variant='ghost'>
                         Share
                     </Button>
                 </Flex>

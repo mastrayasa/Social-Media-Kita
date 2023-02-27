@@ -1,22 +1,18 @@
-import Image from 'next/image';
-import axios, { Method } from "axios";
+import axios from "axios";
 import { useForm } from 'react-hook-form';
 import React, {  useState } from 'react'
 import {
     Box,
-    Center,
-    Heading,
     Text,
-    Stack,
-    Avatar, Textarea, IconButton,
+    Textarea, 
+    IconButton,
     useColorModeValue,
     VStack,
     Button,
     Spacer,
     HStack,
 } from '@chakra-ui/react';
-import { FaEllipsisV, FaGrin, FaMapMarkerAlt, FaPhotoVideo, FaRegCalendarAlt, FaRegChartBar, FaSearchLocation, FaThList } from 'react-icons/fa';
-import { Callback } from 'mongodb';
+import { FaEllipsisV, FaGrin, FaMapMarkerAlt, FaPhotoVideo, FaRegCalendarAlt, FaRegChartBar, FaThList } from 'react-icons/fa';
 interface UseFormInputs{
     post: string
 }
@@ -58,7 +54,6 @@ export default function PostCompose( props: PostComposeProps ) {
             p={4}
             overflow={'hidden'}>
 
-
             <Textarea 
                 disabled={isLoading}
                 {...register('post', { required: true })}
@@ -80,7 +75,7 @@ export default function PostCompose( props: PostComposeProps ) {
 
                     <IconButton color={'gray.600'}
                         variant='unstyled'
-                        aria-label='Tambah Peransaan'
+                        aria-label='Tambah Perasaan'
                         icon={<FaGrin />}
                     />
 
@@ -109,14 +104,12 @@ export default function PostCompose( props: PostComposeProps ) {
                 <Button 
                     colorScheme={'blue'} 
                     isLoading={isLoading}
-                    type="submit"
-                    >
+                    type="submit" >
                     Kirim
                 </Button>
             </HStack>
-
         </Box>
-        </form>
+    </form>
 
     );
 }

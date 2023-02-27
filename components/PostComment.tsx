@@ -1,43 +1,25 @@
-import Image from 'next/image';
-import axios, { Method } from "axios";
+import axios from "axios";
 import { useForm } from 'react-hook-form';
 import React, { useState } from 'react'
 import {
     Box,
-    Center,
-    Heading,
     Text,
-    Stack,
-    Avatar, Textarea, IconButton,
+    Textarea, IconButton,
     useColorModeValue,
-    VStack,
     Button,
     Spacer,
     HStack,
 } from '@chakra-ui/react';
-import { FaEllipsisH, FaEllipsisV, FaGrin, FaMapMarkerAlt, FaPhotoVideo, FaRegCalendarAlt, FaRegChartBar, FaSearchLocation, FaThList } from 'react-icons/fa';
-import { Callback } from 'mongodb';
-import Moment from 'react-moment';
-import { setCommentRange } from 'typescript';
+import {  FaGrin, FaPhotoVideo } from 'react-icons/fa';
+import { PostType } from '@/lib/types/post';
+import CommentCard from '@/components/CommentCard';
 interface UseFormInputs {
     id: string,
     comment: string
 }
 interface PostCommentProps {
-    post: {
-        _id: string,
-        createAt: string,
-        image: string,
-        content: string,
-        likes: object,
-        comments: object
-        user: {
-            name: string,
-            image: string
-        }
-    }
+    post: PostType
 }
-
 
 export default function PostComment(props: PostCommentProps) {
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm<UseFormInputs>();
@@ -61,33 +43,31 @@ export default function PostComment(props: PostCommentProps) {
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-
             <Box
                 mt={1}
                 w={'full'}
                 bg={useColorModeValue('white', 'gray.900')}
-                overflow={'hidden'}> 
-                <Textarea 
+                overflow={'hidden'}>
+                <Textarea
                     onFocus={(e) => setShowComment(true)}
-                     
                     disabled={isLoading} rows={1}
                     {...register('comment', { required: true })}
-                    placeholder='Tulis komentar anda disini?' />
-                    {errors.comment && <Text color={'yellow.600'} fontSize={'sm'}>Tuliskan sesuatu untuk dibagikan</Text>}
+                    placeholder='Write your comment here' />
+                {errors.comment && <Text color={'yellow.600'} fontSize={'sm'}>Comment can't be empty</Text>}
                 {showComment &&
                     <HStack mt={2}>
                         <Box>
                             <IconButton color={'gray.400'} size={'sm'}
                                 variant='unstyled'
-                                aria-label='Upload Gambar'
+                                aria-label='Upload Image'
                                 icon={<FaPhotoVideo />}
                             />
 
                             <IconButton color={'gray.400'} size={'sm'}
                                 variant='unstyled'
-                                aria-label='Tambah Peransaan'
+                                aria-label='Tambah Icon'
                                 icon={<FaGrin />}
-                            /> 
+                            />
                         </Box>
                         <Spacer />
                         <Button
@@ -102,50 +82,8 @@ export default function PostComment(props: PostCommentProps) {
             </Box>
 
             <Box mt={0}>
-                {post.comments.map((val, index) => (
-                    <Box key={index}>
-                        <Stack
-                            direction={'row'}
-                            spacing={4}
-                            align={'flex-start'}
-                            mt={4}
-                        >
-                            <Avatar size='sm' src={val?.user?.image} />
-                            <Stack
-                                direction={'column'} spacing={0} fontSize={'sm'}>
-
-                                <Box
-                                    bg={'gray.100'}
-                                    px={2}
-                                    py={2}
-                                    rounded={'xl'} >
-                                    <HStack>
-                                        <Text fontWeight={600}>Mastrayasa{val?.user?.name}</Text>
-                                        <Spacer />
-                                        <Text fontSize='xs' color={'gray.500'}><Moment fromNow date={val?.createAt} /></Text>
-                                    </HStack>
-
-                                    <Text>{val.comment}</Text>
-                                </Box>
-                                <HStack>
-                                    <Text _hover={{
-                                        textDecoration: 'underline',
-                                        cursor: 'pointer',
-                                    }}>Suka</Text>
-
-                                    <Text _hover={{
-                                        textDecoration: 'underline',
-                                        cursor: 'pointer',
-                                    }}>Balas</Text>
-
-                                    <Text _hover={{
-                                        textDecoration: 'underline',
-                                        cursor: 'pointer',
-                                    }}>Bagikan</Text>
-                                </HStack>
-                            </Stack>
-                        </Stack>
-                    </Box>
+                {post.comments.map((comment, index) => (
+                    <CommentCard comment={comment} key={index} />
                 ))}
             </Box>
         </form>

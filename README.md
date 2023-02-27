@@ -16,6 +16,7 @@ cd Social-Media-Kita
 #### 2. Setup your .env file
 ```bash
 SECRET=<strong string 32>
+DATABASE_NAME= <Database Name>
 MONGODB_URI=
 GOOGLE_ID=
 GOOGLE_SECRET=

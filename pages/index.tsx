@@ -1,31 +1,21 @@
 import Head from 'next/head'
 import {
-    Avatar,
     Box,
-    chakra,
-    color, Text,
+    Text,
     Container,
     Flex,
-    Icon, Input,
-    SimpleGrid,
     useColorModeValue,
-    Stack, VStack, HStack,
+    VStack,
     Button,
     Spinner
 } from '@chakra-ui/react';
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
-import clientPromise from "@/lib/mongodb";
 import Navbar from '@/components/Navbar'
 import PostCompose from '@/components/PostCompose'
 import PostCard from '@/components/PostCard'
 import React, { useState, useEffect } from 'react'
-import { useSession, signIn, signOut } from "next-auth/react"
-import axios, { Method } from "axios";
+import { useSession } from "next-auth/react"
+import axios from "axios";
 import PostLoading from '@/components/PostLoading';
-interface HomeProps {
-    posts: object
-}
-
 export default function Home() {
     const { data: session, status } = useSession()
     const [posts, setPosts] = useState([])
@@ -36,7 +26,6 @@ export default function Home() {
     }, []);
 
     const addOneSuccess = (res) => {
-        // console.log(res)
         setPosts([res, ...posts]);
     }
 
@@ -53,15 +42,6 @@ export default function Home() {
         setIsLoading(false)
         return 0;
     };
-
-    
-  
-    
- 
-    
-    
-    
-
 
     if (status === 'loading') {
         return (
@@ -80,7 +60,7 @@ export default function Home() {
     else if (status === 'unauthenticated') {
         // redirect('/hello-nextjs');
     }
-    // const { posts } = props;
+   
     return (
         <>
             <Head>
@@ -120,20 +100,3 @@ export default function Home() {
         </>
     )
 }
-
-// export async function getStaticProps() {
-//     try {
-//         const client = await clientPromise;  
-//         const posts = await client.db().collection("posts") 
-//             .find({})
-//             .sort({ createAt: -1 })
-//             .limit(100)
-//             .toArray();
-
-//         return {
-//             props: { posts: JSON.parse(JSON.stringify(posts)) },
-//         };
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }

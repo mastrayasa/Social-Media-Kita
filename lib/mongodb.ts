@@ -6,7 +6,7 @@ if (!process.env.MONGODB_URI) {
 
 const uri = process.env.MONGODB_URI
 const options = {
-    dbName: 'social_media_kita'
+    dbName: process.env.DATABASE_NAME
 }
 // Database Name
  
